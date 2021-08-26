@@ -8,4 +8,6 @@ def test (*args):
         print(items[i])
         i = i + 1
 
-test('안녕','하하',123,True)
+simpleTest = test
+
+simpleTest('안녕','하하',123,True)

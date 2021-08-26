@@ -1,0 +1,2 @@
+import simpleModule1
+print(simpleModule1.__name__)
