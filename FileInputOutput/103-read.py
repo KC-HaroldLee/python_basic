@@ -1,2 +1,4 @@
 import FilePath
-print(FilePath.rootPath)
+f1 = open(FilePath.fileFolder+'/test.txt', 'r')
+
+print(f1.read())
