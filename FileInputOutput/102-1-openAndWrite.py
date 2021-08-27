@@ -1,7 +1,7 @@
 #변수로 불러오기
-import FilePath
+import FilePathTools
 
-f1 = open(FilePath.fileFolder+'/test.txt', 'w')
+f1 = open(FilePathTools.fileFolder+'/test.txt', 'w')
 
 print('f1 = ', f1) # open의 정보를 알려준다.
 print('f1.name', f1.name) # 경로확인 (메소드가 아니군)
