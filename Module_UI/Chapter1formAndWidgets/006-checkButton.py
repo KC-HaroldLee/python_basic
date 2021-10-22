@@ -30,7 +30,21 @@ chVarDis = tk.IntVar()
 chVarUn = tk.IntVar()
 chVarEn = tk.IntVar()
 
+# chVarDis
+# CheckButton이 아니라....
+check1 = tk.Checkbutton(win1, text = 'Disabled', variable = chVarDis, state = 'disabled') # 재밌는 건 IntVar.get()이 아니라는 점
+check1.select() # ed가 안붙네
+check1.grid(column = 0, row = 4, sticky = tk.W) # row부터 쓰고 싶다....
 
+# chVarUn
+check2 = tk.Checkbutton(win1, text = 'UnChecked', variable = chVarUn)
+check2.deselect()
+check2.grid(column = 1, row = 4, sticky = tk.W)
+
+# chVarEn
+check3 = tk.Checkbutton(win1, text = 'Enabled', variable= chVarEn)
+check3.select()
+check3.grid(column = 2, row = 4, sticky = tk.W)
 
 name_typed.focus()
 
