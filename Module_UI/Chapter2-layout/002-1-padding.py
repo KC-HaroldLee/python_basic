@@ -2,11 +2,6 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import scrolledtext
 
-### 색상을 저장한 전역변수
-COLOR1 ="Blue"
-COLOR2 ="Gold"
-COLOR3 ="Red"
-
 win1 = tk.Tk()
 win1.title('text_input_test') 
 win1.resizable(width=True, height=False)
@@ -14,12 +9,12 @@ win1.resizable(width=True, height=False)
 def click_me() :
     action.configure(text='Hello ' + name.get() + ' in ' + country.get())
 
-ttk.Label(win1, text='type your name').grid(column=0,row=0) 
-ttk.Label(win1, text='choose a country').grid(column=0, row=1)
+ttk.Label(win1, text='type your name').grid(column=0, row=0, sticky = tk.W) 
+ttk.Label(win1, text='choose a country').grid(column=1, row=0, sticky = tk.W)
 
 name = tk.StringVar()
 name_typed = ttk.Entry(win1, width=12, textvariable=name)
-name_typed.grid(column=0, row=1)
+name_typed.grid(column=0, row=1, sticky = tk.W)
 
 country = tk.StringVar()
 country_selected = ttk.Combobox(win1, width=20, textvariable=country, state='readonly')
@@ -34,6 +29,7 @@ action.grid(column=2, row=1)
 #########################
 #  체크박스 만들기
 #########################
+
 chVarDis = tk.IntVar()
 chVarUn = tk.IntVar()
 chVarEn = tk.IntVar()
@@ -57,40 +53,53 @@ check3.grid(column = 2, row = 4, sticky = tk.W)
 #########################
 #  라디오 버튼 만들기
 #########################
+    #  반복문으로 위젯 추가
+    #########################
+
+colors = ['Blue', 'Gold', 'Red']
 
 def radio_callback() :
     radioSelect = radioVar.get()
     print('radio_callback() 호출')
     print('radioSelect : ', radioSelect)
-    if radioSelect == 1 :
-        win1.configure(background = COLOR1)
+    if radioSelect == 0 :
+        win1.configure(background = colors[0])
+    elif radioSelect == 1 :
+        win1.configure(background = colors[1])
     elif radioSelect == 2 :
-        win1.configure(background = COLOR2)
-    elif radioSelect == 3 :
-        win1.configure(background = COLOR3)
+        win1.configure(background = colors[2])
 
 
 radioVar = tk.IntVar()
+radioVar.set(99)
 
-radio1 = tk.Radiobutton(win1, text = 'Color1', variable = radioVar, value = 1, command = radio_callback)
-radio1.grid(column = 0, row = 5, sticky=tk.W, columnspan = 3)
-radio2 = tk.Radiobutton(win1, text = 'Color2', variable = radioVar, value = 2, command = radio_callback)
-radio2.grid(column = 1, row = 5, sticky=tk.W, columnspan = 3)
-radio3 = tk.Radiobutton(win1, text = 'Color3', variable = radioVar, value = 3, command = radio_callback)
-radio3.grid(column = 2, row = 5, sticky=tk.W, columnspan = 3)
+for col in range(3) :
+    print(col)
+    currentRadio = tk.Radiobutton(win1, text = colors[col], variable = radioVar, value = col, command = radio_callback)
+    currentRadio.grid(column = col, row = 5, sticky = tk.W)
 
 #########################
 #  스크롤 텍스트 위젯
 #########################
 
-# from tkinter import scrolledtext
-
-scroll_w = 30
+scroll_w = 40
 scroll_h = 3
 
-# scroll = scrolledtext.ScrolledText(win1, width = scroll_w, height = scroll_h, wrap = tk.WORD)
-scroll = scrolledtext.ScrolledText(win1, width = scroll_w, height = scroll_h, wrap = tk.CHAR) # tk.CHAR도 있다. 근데 차이는 모르겠다.
-scroll.grid(column = 1, row=6, sticky = tk.E) # E가 안먹혀
+scroll = scrolledtext.ScrolledText(win1, width=scroll_w, height=scroll_h, wrap=tk.WORD)
+scroll.grid(column=0, row = 6, columnspan = 3)
+
+#########################
+#  레이아웃 만들기
+#########################
+    #  패딩 설정
+    #########################
+
+buttons_frame = ttk.LabelFrame(win1, text = '  new lable!!  ')
+buttons_frame.grid(column = 0, row = 7, columnspan = 2, sticky = tk.W, padx=20, pady=20) # y라서 위 아래 모두 적용...
+ttk.Label(buttons_frame, text = 'label_1 ').grid(column = 0, row = 0)
+ttk.Label(buttons_frame, text = 'label_2 ').grid(column = 1, row = 0)
+ttk.Label(buttons_frame, text = 'label_3 ').grid(column = 2, row = 0)
+
 
 name_typed.focus()
  
