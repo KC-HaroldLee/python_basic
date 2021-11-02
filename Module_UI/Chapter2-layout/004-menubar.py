@@ -22,15 +22,25 @@ menu_bar = Menu(win1) # 그치 여기 붙어야지
 # menu_bar = Menu(mighty) # 이건 실험
 win1.config(menu = menu_bar) # config랑 configure랑 뭔 차이죠?
 
+# Exit에 연결 될 종료 함수
+def _quit() :
+    win1.quit()
+    win1.destroy()
+    exit()
 
-file_menu = Menu(menu_bar)
+# file_menu = Menu(menu_bar)
+file_menu = Menu(menu_bar, tearoff=0)
 file_menu.add_command(label='New')
-file_menu.add_command(label='Reset')
-file_menu.add_command(label='Exit')
-print(str(file_menu.add_command.argv))
+file_menu.add_command(label='Reset', command=print('reset!!!'))
+file_menu.add_separator() # 구분선
+file_menu.add_command(label='Exit', command=_quit)
 
 menu_bar.add_cascade(label='File', menu=file_menu)
 
+# help_menu
+help_menu = Menu(menu_bar, tearoff=0)
+help_menu.add_cascade(label='About')
+menu_bar.add_cascade(label='Help', menu=help_menu)
 
 #########################
 #  기본 GUI 만들기
