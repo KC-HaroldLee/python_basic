@@ -1,5 +1,0 @@
-members = Array.new()
-members.push('석현')
-members.push('인환')
-members.push('진철')
-puts(members)

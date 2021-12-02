@@ -1,2 +1,0 @@
-puts(true)
-puts(false)
