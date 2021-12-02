@@ -36,10 +36,10 @@ def mouse_event_on(event, x, y, flags, param) :
             startPoint = pointList[0]
             print('[set]startPoint : ', startPoint) 
 
-    # if len(pointList) > 1 :
-    #     cv.line(src, pointList[len(pointList)-1], (x, y), outerColor, 6)
-    #     cv.line(src, pointList[len(pointList)-1], (x, y), ingColor, 2)
-    #     cv.imshow('draw', src)
+    if len(pointList) > 1 :
+        cv.line(src, pointList[len(pointList)-1], (x, y), outerColor, 6)
+        cv.line(src, pointList[len(pointList)-1], (x, y), ingColor, 2)
+        cv.imshow('draw', src)
 
     if len(pointList) > 2 : 
         if abs(startPoint[0] - x) < magRange and (startPoint[1] - y) < magRange :
@@ -68,7 +68,7 @@ ingColor = (0,0,255)
 
 magRange = 10
 
-src = cv.imread('98-polygon/image/20210922000096_1.jpg')
+src = cv.imread('OpenCV/98-polygon/image/20210922000096_1.jpg')
 
 cv.imshow('draw', src)
 
